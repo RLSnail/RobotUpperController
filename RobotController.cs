@@ -22,8 +22,16 @@ namespace RobotUpprtController
             serialController = new SerialController(portName, baudrate);
             serialController.SerialControllerDataReceived += new SerialControllerDataReceivedHandler(OnSerialControllerDataReceived);
 
-            //打开串口
-            serialController.OpenSerialPort();
+            try
+            {
+                //打开串口
+                serialController.OpenSerialPort();
+            }
+            finally
+            {
+
+            }
+            
             //开启定时接收
             serialController.StartReceive();
         }
