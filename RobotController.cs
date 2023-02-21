@@ -29,6 +29,18 @@ namespace RobotUpprtController
             RobotDataReceived(name, values);
         }
 
+        void SendStr(string str) 
+        {
+            if (serialController != null)
+            {
+                serialController.sendStr(str);
+            }
+            else
+            {
+                //串口控制器没初始化，不用管
+            }
+        }
+
         /*
          * 下面是运动控制相关代码
          */
