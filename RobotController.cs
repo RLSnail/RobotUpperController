@@ -21,6 +21,11 @@ namespace RobotUpprtController
             //初始化串口控制器
             serialController = new SerialController(portName, baudrate);
             serialController.SerialControllerDataReceived += new SerialControllerDataReceivedHandler(OnSerialControllerDataReceived);
+
+            //打开串口
+            serialController.OpenSerialPort();
+            //开启定时接收
+            serialController.StartReceive();
         }
 
         void OnSerialControllerDataReceived(string name, string[] values)
