@@ -51,7 +51,7 @@ namespace RobotUpprtController
          */
 
         //平移控制
-        public void Translation(int x, int y)
+        public void Robot_Translation(int x, int y)
         {
             if (x > 0)
             {
@@ -73,7 +73,7 @@ namespace RobotUpprtController
         }
 
         //旋转控制
-        public void Rotate(int angle)
+        public void Robot_Rotate(int angle)
         {
             if (angle > 0)
             {
