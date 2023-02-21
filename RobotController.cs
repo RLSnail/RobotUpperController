@@ -9,25 +9,24 @@ using System.Timers;
 
 namespace RobotUpprtController
 {
+    public delegate void RobotDataReceivedHandler(string name, string[] values);
     public class RobotController
     {
+        public event RobotDataReceivedHandler RobotDataReceived;
         //定义一个串口控制器
         SerialController serialController;
-        //定义一个定时器定时更新数据
-        System.Timers.Timer timer_update = null;
 
         public RobotController(string portName, int baudrate)
         {
             //初始化串口控制器
             serialController = new SerialController(portName, baudrate);
-            serialController.DataReceived += new DataReceivedHandler(OnDataReceived);
-
-            //初始化定时器
+            serialController.SerialControllerDataReceived += new SerialControllerDataReceivedHandler(OnDataReceived);
         }
 
         void OnDataReceived(string name, string[] values)
         {
-            //串口控制器收到了下位机传来的格式化数据
+            //串口控制器收到了下位机传来的格式化数据，直接转发到上一层级
+            RobotDataReceived(name, values);
         }
     }
 }

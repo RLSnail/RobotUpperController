@@ -9,12 +9,12 @@ using System.Timers;
 namespace RobotUpprtController
 {
     //定义收到数据时的委托
-    public delegate void DataReceivedHandler(string name, string[] values);
+    public delegate void SerialControllerDataReceivedHandler(string name, string[] values);
 
     internal class SerialController
     {
         //定义一个收到数据的事件
-        public event DataReceivedHandler DataReceived;
+        public event SerialControllerDataReceivedHandler SerialControllerDataReceived;
         //定义收发数据用的串口
         SerialPort serial = null;
         //定义当前接收到的数据
@@ -113,7 +113,7 @@ namespace RobotUpprtController
             if(name != null && values != null) 
             {
                 //解析成功才调用对应事件
-                this.DataReceived(name, values);
+                this.SerialControllerDataReceived(name, values);
             }
             else
             {
