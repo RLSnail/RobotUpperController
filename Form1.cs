@@ -12,6 +12,7 @@ namespace RobotUpprtController
 {
     public partial class Form1 : Form
     {
+        RobotController rc = new RobotController("COM3", 115200);
         public Form1()
         {
             InitializeComponent();
