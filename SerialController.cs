@@ -32,7 +32,7 @@ namespace RobotUpprtController
 
             //初始化数据解析定时器
             timer_parse = new Timer();
-            timer_parse.Interval = 200; //每隔200ms解析一次
+            timer_parse.Interval = 20; //每隔20ms解析一次
             timer_parse.Elapsed += new ElapsedEventHandler(OnTimerParseElapsed);
 
             //初始化串口
