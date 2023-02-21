@@ -54,5 +54,18 @@ namespace RobotUpprtController
                 serialController.sendCmd("RIGHT", string.Format("{0}", -y));
             }
         }
+
+        //旋转控制
+        public void Rotate(int angle)
+        {
+            if (angle > 0)
+            {
+                serialController.sendCmd("TL", string.Format("{0}", angle));
+            }
+            else
+            {
+                serialController.sendCmd("TR", string.Format("{0}", -angle));
+            }
+        }
     }
 }
