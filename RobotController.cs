@@ -34,10 +34,12 @@ namespace RobotUpprtController
             RobotDataReceived(name, values);
         }
 
+        //发送一个字符串
         void SendStr(string str) 
         {
             if (serialController != null)
             {
+                //转发给串口控制器
                 serialController.sendStr(str);
             }
             else
