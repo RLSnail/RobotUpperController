@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO.Ports;
 using System.Timers;
+using System.Xml.Linq;
 
 namespace RobotUpprtController
 {
@@ -149,6 +150,22 @@ namespace RobotUpprtController
             {
                 string cmd = name + ":" + value + "\n";
                 this.serial.Write(cmd);
+                return true;
+            }
+            else
+            {
+                //串口没打开
+                return false;
+            }
+        }
+
+        //发送字符串
+        public bool sendStr(string str)
+        {
+            //判断串口是否已经打开
+            if (this.serial.IsOpen)
+            {
+                this.serial.Write(str);
                 return true;
             }
             else
