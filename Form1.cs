@@ -19,20 +19,7 @@ namespace RobotUpprtController
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            SerialController serialCommandController = new SerialController("COM3", 115200);
-            serialCommandController.SerialControllerDataReceived += new SerialControllerDataReceivedHandler(OnSerialDataReceived);
-            serialCommandController.OpenSerialPort();
-            serialCommandController.StartReceive();
-            
-        }
 
-        void OnSerialDataReceived(string name, string[] values)
-        {
-            Console.WriteLine("name=" + name);
-            foreach (string value in values) 
-            {
-                Console.WriteLine("value=" + value);
-            }
         }
     }
 }
