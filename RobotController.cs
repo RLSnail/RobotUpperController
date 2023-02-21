@@ -12,6 +12,9 @@ namespace RobotUpprtController
     public delegate void RobotDataReceivedHandler(string name, string[] values);
     public class RobotController
     {
+        /**
+         机器人控制器的作用是连接UI和串口控制器
+         */
         public event RobotDataReceivedHandler RobotDataReceived;
         //定义一个串口控制器
         SerialController serialController;
