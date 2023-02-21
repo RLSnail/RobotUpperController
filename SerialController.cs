@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.IO.Ports;
 using System.Timers;
 using System.Xml.Linq;
+using System.Windows.Forms;
 
 namespace RobotUpprtController
 {
@@ -14,6 +15,10 @@ namespace RobotUpprtController
 
     internal class SerialController
     {
+        /**
+         串口控制器的作用是接收和发送数据
+         */
+
         //定义一个收到数据的事件
         public event SerialControllerDataReceivedHandler SerialControllerDataReceived;
         //定义收发数据用的串口
@@ -23,7 +28,7 @@ namespace RobotUpprtController
         //定义数据队列
         Queue<string> data_queue = null;
         //定义一个定时器用于定时解析数据队列中的数据
-        Timer timer_parse = null;
+        System.Timers.Timer timer_parse = null;
 
         public SerialController(string portName, int badurate) 
         {
@@ -31,7 +36,7 @@ namespace RobotUpprtController
             data_queue= new Queue<string>();
 
             //初始化数据解析定时器
-            timer_parse = new Timer();
+            timer_parse = new System.Timers.Timer();
             timer_parse.Interval = 20; //每隔20ms解析一次
             timer_parse.Elapsed += new ElapsedEventHandler(OnTimerParseElapsed);
 
@@ -56,7 +61,14 @@ namespace RobotUpprtController
             if (!this.serial.IsOpen)
             {
                 //打开串口
-                this.serial.Open();
+                try
+                {
+                    this.serial.Open();
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
             }
             else
             {
