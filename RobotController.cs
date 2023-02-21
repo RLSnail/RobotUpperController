@@ -20,13 +20,39 @@ namespace RobotUpprtController
         {
             //初始化串口控制器
             serialController = new SerialController(portName, baudrate);
-            serialController.SerialControllerDataReceived += new SerialControllerDataReceivedHandler(OnDataReceived);
+            serialController.SerialControllerDataReceived += new SerialControllerDataReceivedHandler(OnSerialControllerDataReceived);
         }
 
-        void OnDataReceived(string name, string[] values)
+        void OnSerialControllerDataReceived(string name, string[] values)
         {
             //串口控制器收到了下位机传来的格式化数据，直接转发到上一层级
             RobotDataReceived(name, values);
+        }
+
+        /*
+         * 下面是运动控制相关代码
+         */
+
+        //平移控制
+        public void Move(int x, int y)
+        {
+            if (x > 0)
+            {
+                serialController.sendCmd("FORWARD", string.Format("{0}", x));
+            }
+            else
+            {
+                serialController.sendCmd("BACKWARD", string.Format("{0}", -x));
+            }
+
+            if (y > 0)
+            {
+                serialController.sendCmd("LEFT", string.Format("{0}", y));
+            }
+            else
+            {
+                serialController.sendCmd("RIGHT", string.Format("{0}", -y));
+            }
         }
     }
 }
