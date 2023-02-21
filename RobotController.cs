@@ -34,7 +34,7 @@ namespace RobotUpprtController
          */
 
         //平移控制
-        public void Move(int x, int y)
+        public void Translation(int x, int y)
         {
             if (x > 0)
             {
